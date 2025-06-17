@@ -1,13 +1,8 @@
 document.getElementById('getWeatherBtn').addEventListener('click', () => {
   const weatherDiv = document.getElementById('weatherData');
 
-  fetch('https://api.openweathermap.org/data/2.5/weather?lat=51.5074&lon=-0.1278&appid=92f4e9a9c233be99f0b33d1c58c72386&units=metric')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Failed to fetch weather');
-      }
-      return response.json();
-    })
+  fetch('https://api.openweathermap.org/data/2.5/weather?q=London&appid=8f98fcdd76mshfa89c3cceede1a6p1a18fajsn4fc1110edb3a&units=metric')
+    .then(response => response.json())
     .then(data => {
       const weather = data.weather[0].main;
       weatherDiv.innerText = `Current weather in London: ${weather}`;
