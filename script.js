@@ -1,24 +1,19 @@
-//your JS code here. If required.
-
-
 document.getElementById('getWeatherBtn').addEventListener('click', () => {
-  fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=19.075975&lon=72.87738&appid=92f4e9a9c233be99f0b33d1c58c72386`
-  )
-    .then((response) => {
+  const weatherDiv = document.getElementById('weatherData');
+
+  fetch('https://api.openweathermap.org/data/2.5/weather?lat=51.5074&lon=-0.1278&appid=92f4e9a9c233be99f0b33d1c58c72386&units=metric')
+    .then(response => {
       if (!response.ok) {
-        throw new Error('Failed to fetch weather data.');
+        throw new Error('Failed to fetch weather');
       }
       return response.json();
     })
-    .then((data) => {
+    .then(data => {
       const weather = data.weather[0].main;
-      document.getElementById('weatherData').innerText =
-        `Current weather in London: ${weather}`;
+      weatherDiv.innerText = `Current weather in London: ${weather}`;
     })
-    .catch((error) => {
-      document.getElementById('weatherData').innerText =
-        'Error fetching weather data. Please try again.';
+    .catch(error => {
+      weatherDiv.innerText = 'Error fetching weather data';
       console.error(error);
     });
 });
